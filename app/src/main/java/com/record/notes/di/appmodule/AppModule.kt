@@ -1,8 +1,14 @@
 package com.record.notes.di.appmodule
 
 import android.content.Context
+import com.record.notes.data.repository_impl.HomeRepositoryImpl
+import com.record.notes.data.repository_impl.RecordRepositoryImpl
+import com.record.notes.data.repository_impl.SearchRepositoryImpl
 import com.record.notes.data.source.local.DatabaseHelper.Companion.getDatabaseInstance
 import com.record.notes.data.source.local.RoomDao
+import com.record.notes.domain.repository.HomeRepository
+import com.record.notes.domain.repository.RecordRepository
+import com.record.notes.domain.repository.SearchRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,34 +27,23 @@ object AppModule {
          return getDatabaseInstance(context).userDao()
     }
 
-//
-//    // get api instance
-//    @Provides
-//    @Singleton
-//    fun provideApiRetrofitInstance(@ApplicationContext context: Context): ApiServiceMst {
-//        // get subject retrofit instance mst
-//        return getSubjectRetrofitInstance(context).create(ApiServiceMst::class.java)
-//    }
-//
-//    @Provides
-//    @Singleton
-//    fun provideVideoApiRetrofitInstance(@ApplicationContext context: Context): ApiServiceIvy {
-//        // get video retrofit instance ivy
-//        return getIvyRetrofitInstance(context).create(ApiServiceIvy::class.java)
-//    }
-//
-//    //user auth and profile
-//    @Provides
-//    @Singleton
-//    fun provideUserRepoImpl(apiServiceMst: ApiServiceMst, roomDao: RoomDao): UserRepository {
-//        return UserRepositoryImpl(apiServiceMst, roomDao)
-//    }
-//
-//    // subject
-//    @Provides
-//    @Singleton
-//    fun provideSubjectRepoImpl(apiServiceMst: ApiServiceMst, roomDao: RoomDao): SubjectRepository {
-//        return SubjectRepositoryImpl(apiServiceMst, roomDao)
-//    }
-//
+    // subject
+    @Provides
+    @Singleton
+    fun provideSubjectRepoImpl(roomDao: RoomDao): RecordRepository {
+        return RecordRepositoryImpl(roomDao)
+    }
+
+    //user auth and profile
+    @Provides
+    @Singleton
+    fun provideUserRepoImpl(roomDao: RoomDao): HomeRepository {
+        return HomeRepositoryImpl(roomDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSearchRepoImpl(roomDao: RoomDao): SearchRepository {
+        return SearchRepositoryImpl(roomDao)
+    }
 }

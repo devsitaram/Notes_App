@@ -17,12 +17,7 @@ import com.record.notes.data.common.Constants.DATABASE_NAME
  *        5: adding json type converter @TypeConverters
  * implement RoomDatabase
  */
-@Database(
-    entities = [CustomerEntity::class],
-    version = 5,
-    exportSchema = false
-)
-//@TypeConverters(TypeConverter::class)
+@Database(entities = [CustomerEntity::class], version = 1, exportSchema = false)
 abstract class DatabaseHelper : RoomDatabase() {
     abstract fun userDao(): RoomDao
 

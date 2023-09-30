@@ -1,19 +1,20 @@
 package com.record.notes.presentation.viewmodel
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.record.notes.data.source.local.CustomerEntity
 import com.record.notes.domain.use_case.RecordUseCase
-import com.record.notes.presentation.state.RecordState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.launchIn
 import javax.inject.Inject
 
-//@HiltViewModel
-//class RecordViewModel @Inject constructor(private val recordUseCase: RecordUseCase) :
-//    ViewModel() {
-//
-//    private var _subjectList = mutableStateOf(RecordState())
-//    val subjectList: State<RecordState> get() = _subjectList
+@HiltViewModel
+class RecordViewModel @Inject constructor(private val recordUseCase: RecordUseCase) : ViewModel() {
+
+    fun registerDetails(customerEntity: CustomerEntity){
+        recordUseCase(customerEntity).launchIn(viewModelScope)
+    }
+}
 //
 //    fun getSubject() {
 //        subjectUseCase().onEach {

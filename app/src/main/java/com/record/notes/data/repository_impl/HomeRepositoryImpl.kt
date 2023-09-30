@@ -1,16 +1,27 @@
 package com.record.notes.data.repository_impl
-//
-//import com.record.notes.data.source.local.RoomDao
-//import com.record.notes.data.source.local.UserEntity
-//import com.edu.socialmediallogin.data.source.remote.network.ApiServiceMst
-//import com.edu.socialmediallogin.data.source.remote.pojo.user.AuthPojo
-//import com.edu.socialmediallogin.data.source.remote.pojo.user.ProfileResult
-//import com.record.notes.domain.model.LoginRequestModel
-//import com.record.notes.domain.repository.UserRepository
-//
-//class UserRepositoryImpl(private val apiServiceMst: ApiServiceMst, private val roomDao: RoomDao) :
-//    UserRepository {
-//
+
+import android.util.Log
+import com.record.notes.data.source.local.RoomDao
+import com.record.notes.domain.model.CustomerPojo
+import com.record.notes.domain.repository.HomeRepository
+
+class HomeRepositoryImpl(private val roomDao: RoomDao) : HomeRepository {
+    override suspend fun getCustomerDetails(): List<CustomerPojo>? {
+        return try {
+            roomDao.getCustomerDetails()
+        } catch (e: Exception){
+            throw Exception(e)
+        }
+    }
+
+    override suspend fun deleteById(customerId: Int?) {
+        try {
+            return roomDao.deleteById(customerId)
+        } catch (e: Exception) {
+            throw Exception(e)
+        }
+    }
+}
 //    // login authentications
 //    override suspend fun getLoginUserAuth(email: String, password: String): AuthPojo {
 //        try {

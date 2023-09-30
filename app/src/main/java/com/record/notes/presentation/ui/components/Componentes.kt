@@ -18,9 +18,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Badge
-import androidx.compose.material.BadgedBox
-import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material3.ButtonElevation
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material.CircularProgressIndicator
@@ -31,8 +28,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.ButtonColors
@@ -174,7 +169,7 @@ fun ButtonView(
         border = border,
         contentPadding = contentPadding
     ) {
-        TextView(text = text, style = textStyle, modifier = Modifier.padding(3.dp))
+        TextView(text = text, style = textStyle, modifier = Modifier.padding(5.dp))
     }
 }
 
@@ -216,8 +211,7 @@ fun InputTextFieldView(
     enabled: Boolean = true,
     readOnly: Boolean = false,
     leadingIcon: @Composable() (() -> Unit)? = null,
-    modifier: Modifier = Modifier,
-    placeholder: String? = null,
+    modifier: Modifier = Modifier.fillMaxWidth(),
     textStyle: TextStyle = TextStyle.Default,
     isEmpty: Boolean = false,
     isInvalidError: Boolean = false,
@@ -234,20 +228,62 @@ fun InputTextFieldView(
             value = value,
             onValueChange = onValueChange,
             label = { TextView(text = label.toString(), style = textStyle) },
-            placeholder = {
-                TextView(
-                    text = placeholder.toString(),
-                    style = TextStyle(
-                        color = Color.Gray,
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Normal,
-                        lineHeight = 24.sp
-                    ),
-                    modifier = Modifier
-                )
-            },
             trailingIcon = null,
             leadingIcon = leadingIcon,
+            enabled = enabled,
+            readOnly = readOnly,
+            keyboardOptions = keyboardOptions,// KeyboardOptions(keyboardType = KeyboardType.Text),
+            singleLine = singleLine,
+            maxLines = maxLines,
+            shape = shape,
+            isError = (isEmpty || isInvalidError),
+            modifier = modifier
+        )
+        if (isEmpty) {
+            TextView(
+                text = errorMessage.toString(),
+                style = TextStyle(color = errorColor),
+                modifier = Modifier.padding(start = 5.dp, top = 2.dp)
+            )
+        }
+        if (isInvalidError) {
+            TextView(
+                text = invalidMessage.toString(),
+                style = TextStyle(color = errorColor),
+                modifier = Modifier.padding(start = 5.dp, top = 2.dp)
+            )
+        }
+    }
+}
+
+@Composable
+fun DateTimePickerView(
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: String? = null,
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    leadingIcon: @Composable() (() -> Unit)? = null,
+    trailingIcon: @Composable() (() -> Unit)? = null,
+    modifier: Modifier = Modifier,
+    textStyle: TextStyle = TextStyle.Default,
+    isEmpty: Boolean = false,
+    isInvalidError: Boolean = false,
+    singleLine: Boolean = true,
+    maxLines: Int = 1,
+    keyboardOptions: KeyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+    shape: Shape = ShapeDefaults.Medium,
+    errorMessage: String? = null,
+    invalidMessage: String? = null,
+    errorColor: Color = Color.Unspecified,
+) {
+    Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start) {
+        OutlinedTextField(
+            value = value,
+            onValueChange = onValueChange,
+            label = { TextView(text = label.toString(), style = textStyle) },
+            leadingIcon = leadingIcon,
+            trailingIcon = trailingIcon,
             enabled = enabled,
             readOnly = readOnly,
             keyboardOptions = keyboardOptions,// KeyboardOptions(keyboardType = KeyboardType.Text),
@@ -543,7 +579,7 @@ fun ButtonAppBar(title: String) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 PainterImageView(
-                    painter = painterResource(id = R.mipmap.img_islington_college),
+                    painter = painterResource(id = R.mipmap.img_notes),
                     modifier = Modifier.size(40.dp),
                     contentDescription = null
                 )
@@ -555,7 +591,7 @@ fun ButtonAppBar(title: String) {
                     TextView(
                         text = title,
                         fontWeight = FontWeight.SemiBold,
-                        modifier = Modifier.padding(start = 5.dp)
+                        modifier = Modifier
                     )
                 }
             }

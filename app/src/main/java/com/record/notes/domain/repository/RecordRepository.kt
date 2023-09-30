@@ -1,10 +1,11 @@
-//package com.record.notes.domain.repository
-//
-//interface RecordRepository {
-//
-////    suspend fun getSubjects(): List<SubjectResult>?
+package com.record.notes.domain.repository
+
+import com.record.notes.data.source.local.CustomerEntity
+
+interface RecordRepository {
+
 ////
-////    suspend fun insertSubject(listOfSubject: List<SubjectEntity>)
+////    suspend fun getUserProfile(): ProfileResult?
 //
-//    suspend fun deleteSubject(id: Int)
-//}
+    suspend fun insertCustomer(customerEntity: CustomerEntity)
+}
