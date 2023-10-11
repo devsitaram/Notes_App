@@ -73,24 +73,23 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     // navigation compose
-    implementation("androidx.compose.material:material:1.5.1")
+    implementation("androidx.compose.material:material:1.5.2")
     implementation("androidx.navigation:navigation-compose:2.7.3")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
     implementation("androidx.compose.material3:material3")
+
     // defaults icons
     implementation("androidx.compose.material:material-icons-extended-android:1.6.0-alpha06")
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.3")
 
-    // activity
+//    // activity
     implementation("androidx.activity:activity-ktx:1.7.2")
     implementation("androidx.activity:activity-compose:1.7.2")
 
     // Lifecycle
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-common:2.6.2")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
@@ -118,10 +117,6 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    // Moshi
-    implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
-    //noinspection KaptUsageInsteadOfKsp
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
 
     // Coroutine
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
@@ -146,7 +141,7 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.6.0-alpha06")
     debugImplementation("androidx.compose.ui:ui-tooling:1.6.0-alpha06")
     debugImplementation("androidx.compose.ui:ui-test-manifest:1.6.0-alpha06")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.10")
 
     // Dependency Injection
     implementation("com.google.dagger:hilt-android:2.45")
@@ -158,7 +153,7 @@ dependencies {
 
     // lottie
     implementation ("com.airbnb.android:lottie-compose:4.0.0")
-    implementation ("androidx.compose.foundation:foundation:1.5.1")
+    implementation ("androidx.compose.foundation:foundation:1.5.3")
     implementation ("androidx.viewpager2:viewpager2:1.0.0")
 
 }

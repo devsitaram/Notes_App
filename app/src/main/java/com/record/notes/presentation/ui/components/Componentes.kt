@@ -603,88 +603,27 @@ fun ButtonAppBar(title: String) {
     )
 }
 
-//@Composable
-//fun ContentCardView(
-//    imageUrl: String,
-//    topic: String,
-//    description: String,
-//    onClickable: () -> Unit
-//) {
-//    Card(
-//        modifier = Modifier
-//            .fillMaxWidth().wrapContentHeight()
-//            .padding(bottom = 15.dp)
-//            .border(1.dp, Color.LightGray)
-//            .clickable { onClickable() },
-//        shape = ShapeDefaults.Medium
-//    ) {
-//        Row(
-//            modifier = Modifier
-//                .fillMaxSize()
-//                .background(Color.White),
-//            horizontalArrangement = Arrangement.Center,
-//            verticalAlignment = Alignment.CenterVertically
-//        ) {
-//            AsyncImage(
-//                model = imageUrl,
-//                contentDescription = null,
-//                modifier = Modifier
-//                    .size(120.dp)
-//                    .padding(start = 15.dp, end = 15.dp)
-//            )
-//            Column(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .border(1.dp, Color.LightGray),
-//                verticalArrangement = Arrangement.Bottom
-//            ) {
-//                Column(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .padding(15.dp)
-//                ) {
-//                    TextView(
-//                        text = topic, style = TextStyle(
-//                            fontSize = 15.sp,
-//                            fontWeight = FontWeight.Bold,
-//                        ),
-//                        modifier = Modifier
-//                    )
-//                    TextView(
-//                        text = description,
-//                        style = TextStyle(
-//                            fontSize = 14.sp,
-//                            fontWeight = FontWeight.Normal,
-//                            lineHeight = 20.sp,
-//                            color = Color.Gray
-//                        ),
-//                        modifier = Modifier.padding(top = 5.dp)
-//                    )
-//                }
-//                Spacer(modifier = Modifier.padding(top = 20.dp))
-//                Row(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .border(1.dp, Color.LightGray)
-//                        .padding(10.dp),
-//                    verticalAlignment = Alignment.CenterVertically
-//                ) {
-//                    Icon(
-//                        imageVector = Icons.Default.Newspaper,
-//                        contentDescription = null,
-//                        tint = skyBlue,
-//                        modifier = Modifier.padding(start = 5.dp)
-//                    )
-//                    TextView(
-//                        text = "View Package Detail", style = TextStyle(
-//                            fontSize = 14.sp,
-//                            fontWeight = FontWeight.SemiBold,
-//                            color = skyBlue
-//                        ),
-//                        modifier = Modifier.padding(start = 5.dp)
-//                    )
-//                }
-//            }
-//        }
-//    }
-// }
+@Composable
+fun ConfirmationDialogBox(
+    title: String,
+    text: String,
+    onDismiss: () -> Unit,
+    onConfirm: () -> Unit
+) {
+    androidx.compose.material.AlertDialog(
+        onDismissRequest = { onDismiss() },
+        title = { TextView(text = title, fontSize = 16.sp, fontWeight = FontWeight.SemiBold) },
+        text = { TextView(text = text, color = Color.Gray) },
+        modifier = Modifier.fillMaxWidth(),
+        dismissButton = {
+            TextButton(onClick = { onDismiss() }) {
+                TextView(text = "No", color = Color.Blue)
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = { onConfirm() }) {
+                TextView(text = "Yes", color = Color.Blue)
+            }
+        }
+    )
+}

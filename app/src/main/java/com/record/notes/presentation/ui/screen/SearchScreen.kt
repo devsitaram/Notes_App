@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.PersonOutline
@@ -48,26 +49,23 @@ import com.record.notes.presentation.viewmodel.SearchViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchViewScreen(
-    navController: NavHostController,
     searchViewModel: SearchViewModel = hiltViewModel(),
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
-
-    val context = LocalContext.current
 
     val customerDetails = searchViewModel.searchCustomer.value
 
     var queryText by remember { mutableStateOf("") }
     var isPlaying by remember { mutableStateOf(true) }
 
-    val compositionResult: LottieCompositionResult =
-        rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.search_animation))
-    val progress by animateLottieCompositionAsState(
-        composition = compositionResult.value,
-        isPlaying = isPlaying,
-        iterations = LottieConstants.IterateForever,
-        speed = 0.75f
-    )
+//    val compositionResult: LottieCompositionResult =
+//        rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.search_animation))
+//    val progress by animateLottieCompositionAsState(
+//        composition = compositionResult.value,
+//        isPlaying = isPlaying,
+//        iterations = LottieConstants.IterateForever,
+//        speed = 0.75f
+//    )
 
     if (customerDetails.isLoading) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -107,7 +105,7 @@ fun SearchViewScreen(
                         queryText = it
                         searchViewModel.searchQuery(query = queryText)
                     },
-                    placeholder = { TextView(text = "Search...") },
+                    placeholder = { TextView(text = "Name Search...") },
                     maxLines = 1,
                     singleLine = true,
                     leadingIcon = {
@@ -161,11 +159,12 @@ fun SearchViewScreen(
                     modifier = Modifier.fillMaxHeight(),
                     contentAlignment = Alignment.Center
                 ) {
-                    LottieAnimation(
-                        composition = compositionResult.value,
-                        progress = progress,
-                        modifier = Modifier.size(120.dp)
-                    )
+                    Icon(imageVector = Icons.Default.Search, contentDescription = null)
+//                    LottieAnimation(
+//                        composition = compositionResult.value,
+//                        progress = progress,
+//                        modifier = Modifier.size(120.dp)
+//                    )
                 }
             }
         }

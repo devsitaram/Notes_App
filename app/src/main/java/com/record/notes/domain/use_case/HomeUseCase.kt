@@ -1,6 +1,7 @@
 package com.record.notes.domain.use_case
 
 import com.record.notes.data.common.Resource
+import com.record.notes.data.source.local.CustomerEntity
 import com.record.notes.domain.model.CustomerPojo
 import com.record.notes.domain.repository.HomeRepository
 import kotlinx.coroutines.flow.Flow
@@ -26,14 +27,3 @@ class HomeUseCase(private val homeRepository: HomeRepository) {
         }
     }
 }
-
-//
-//    operator fun invoke(userEntity: UserEntity) = flow {
-//        emit(Resource.Loading())
-//        try {
-//            emit(Resource.Success(data = userRepository.insertUserProfile(userEntity)))
-//        } catch (e: Exception) {
-//            emit(Resource.Error(message = e.message.toString()))
-//        }
-//    }
-//}

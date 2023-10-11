@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
@@ -31,6 +33,7 @@ import androidx.compose.material.icons.filled.DriveFileRenameOutline
 import androidx.compose.material.icons.filled.EditLocationAlt
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.MailOutline
+import androidx.compose.material.icons.filled.Money
 import androidx.compose.material.icons.filled.PersonOutline
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.TextIncrease
@@ -181,6 +184,7 @@ fun RecordViewScreen(
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold
             )
+            Spacer(modifier = Modifier.fillMaxWidth().height(2.dp))
             TextView(
                 text = "आफ्नो विवरण नोट गर्नुहोस्|",
                 color = colorResource(id = R.color.black),
@@ -228,7 +232,8 @@ fun RecordViewScreen(
                     leadingIcon = {
                         VectorIconView(
                             imageVector = Icons.Default.CalendarMonth,
-                            tint = Color.Gray
+                            tint = Color.Gray,
+                            modifier = Modifier.size(20.dp)
                         )
                     },
                     trailingIcon = {
@@ -250,6 +255,7 @@ fun RecordViewScreen(
                         VectorIconView(
                             imageVector = Icons.Default.PersonOutline,
                             tint = Color.Gray,
+                            modifier = Modifier.size(20.dp)
                         )
                     },
                     isEmpty = isFullNameEmpty,
@@ -267,7 +273,8 @@ fun RecordViewScreen(
                     leadingIcon = {
                         VectorIconView(
                             imageVector = Icons.Default.DriveFileRenameOutline,
-                            tint = Color.Gray
+                            tint = Color.Gray,
+                            modifier = Modifier.size(20.dp)
                         )
                     },
                     isEmpty = isWorkEmpty,
@@ -289,6 +296,7 @@ fun RecordViewScreen(
                         VectorIconView(
                             imageVector = Icons.Default.CurrencyRupee,
                             tint = Color.Gray,
+                            modifier = Modifier.size(20.dp)
                         )
                     },
                     isEmpty = isAmountEmpty,
@@ -312,6 +320,13 @@ fun RecordViewScreen(
                     OutlinedTextField(
                         value = selectedStatusItem,
                         onValueChange = { selectedStatusItem = it },
+                        leadingIcon = {
+                            VectorIconView(
+                                imageVector = Icons.Default.Money,
+                                tint = Color.Gray,
+                                modifier = Modifier.size(20.dp)
+                            )
+                        },
                         trailingIcon = {
                             ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
                         },
@@ -353,7 +368,7 @@ fun RecordViewScreen(
 
                 // descriptions
                 InputTextFieldView(
-                    value = descriptions,
+                    value = descriptions.toString(),
                     onValueChange = { descriptions = it },
                     label = "Description/विवरण",
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
@@ -361,6 +376,7 @@ fun RecordViewScreen(
                         VectorIconView(
                             imageVector = Icons.Default.ContentPaste,
                             tint = Color.Gray,
+                            modifier = Modifier.size(20.dp)
                         )
                     },
                     maxLines = Int.MAX_VALUE,
@@ -372,7 +388,7 @@ fun RecordViewScreen(
 
                 // phoneNumber
                 InputTextFieldView(
-                    value = phoneNumber,
+                    value = phoneNumber.toString(),
                     onValueChange = { phoneNumber = it },
                     label = "Number/फोन न.",
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
@@ -380,6 +396,7 @@ fun RecordViewScreen(
                         VectorIconView(
                             imageVector = Icons.Default.Phone,
                             tint = Color.Gray,
+                            modifier = Modifier.size(20.dp)
                         )
                     },
                     modifier = Modifier
@@ -389,7 +406,7 @@ fun RecordViewScreen(
 
                 // nickname
                 InputTextFieldView(
-                    value = nickname,
+                    value = nickname.toString(),
                     onValueChange = { nickname = it },
                     label = "Nickname/उपनाम",
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
@@ -397,6 +414,7 @@ fun RecordViewScreen(
                         VectorIconView(
                             imageVector = Icons.Default.TextIncrease,
                             tint = Color.Gray,
+                            modifier = Modifier.size(20.dp)
                         )
                     },
                     modifier = Modifier
@@ -406,7 +424,7 @@ fun RecordViewScreen(
 
                 // location
                 InputTextFieldView(
-                    value = location,
+                    value = location.toString(),
                     onValueChange = { location = it },
                     label = "Location/स्थान",
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
@@ -414,6 +432,7 @@ fun RecordViewScreen(
                         VectorIconView(
                             imageVector = Icons.Default.EditLocationAlt,
                             tint = Color.Gray,
+                            modifier = Modifier.size(20.dp)
                         )
                     },
                     modifier = Modifier
@@ -423,7 +442,7 @@ fun RecordViewScreen(
 
                 // emailAddress
                 InputTextFieldView(
-                    value = emailAddress,
+                    value = emailAddress.toString(),
                     onValueChange = { emailAddress = it },
                     label = "Email/इमेल",
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
@@ -431,6 +450,7 @@ fun RecordViewScreen(
                         VectorIconView(
                             imageVector = Icons.Default.MailOutline,
                             tint = Color.Gray,
+                            modifier = Modifier.size(20.dp)
                         )
                     },
                     modifier = Modifier
@@ -447,230 +467,16 @@ fun RecordViewScreen(
                     textStyle = TextStyle(
                         textAlign = TextAlign.Center,
                         color = Color.White,
-                        fontSize = 14.sp,
+                        fontSize = 15.sp,
                         fontWeight = FontWeight.SemiBold
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 15.dp, end = 15.dp)
                 )
-
                 Spacer(modifier = Modifier.padding(top = 50.dp))
 
             }
         }
     }
 }
-
-////    val context = (LocalContext.current as Activity)
-//
-//    val subjects = viewModel.subjectList.value
-//
-////    LaunchedEffect(key1 = Unit, block = {
-////        viewModel.getSubject()
-////    })
-//
-//    if (subjects.isLoading) {
-//        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-//            CircularProgressIndicator()
-//        }
-//    }
-//
-//    if (subjects.isError.isNotBlank()) {
-//        Box(
-//            modifier = Modifier
-//                .fillMaxSize()
-//                .padding(horizontal = 15.dp, vertical = 15.dp),
-//            contentAlignment = Alignment.Center
-//        ) {
-//            TextView(text = subjects.isError)
-//        }
-//    }
-//
-////    subjects.isData?.let {
-////        Box(modifier = Modifier.fillMaxSize()) {
-////            Column(
-////                modifier = Modifier
-////                    .fillMaxWidth()
-////                    .padding(bottom = 50.dp),
-////                horizontalAlignment = Alignment.CenterHorizontally
-////            ) {
-////                ButtonAppBar(title = "", navController = navController)
-////                TextView(
-////                    text = "Subjects",
-////                    style = TextStyle(
-////                        fontSize = 15.sp,
-////                        color = Color.Gray,
-////                        fontWeight = FontWeight.SemiBold,
-////                        textAlign = TextAlign.Start
-////                    ),
-////                    modifier = Modifier
-////                        .fillMaxWidth()
-////                        .padding(15.dp)
-////                )
-////
-////                LazyColumn(
-////                    modifier = Modifier
-////                        .fillMaxWidth()
-////                        .padding(start = 15.dp, end = 15.dp)
-////                ) {
-////                    items(it) { subject ->
-////                        val subjectId = subject?.subjectId
-////                        val yearlyPrice = subject?.yearlyPrice
-////                        val studentSubject = subject?.studentSubject
-////                        val validityStartDate = subject?.validityStartDate
-////                        val level = subject?.level
-////                        val packageId = subject?.packageId
-////                        val packageTag = subject?.packageTag
-////                        val monthlyPrice = subject?.monthlyPrice
-////                        val validityEndDate = subject?.validityEndDate
-////                        val halfYearlyPrice = subject?.halfYearlyPrice
-////                        val assetType = subject?.assetType
-////                        val photoUrl = subject?.photoUrl.toString()
-////                        val isComingSoon = subject?.isComingSoon
-////                        val name = subject?.name
-////                        val planEndDate = subject?.planEndDate
-////                        val packageGrade = subject?.packageGrade
-////                        val isStudentPremium = subject?.isStudentPremium
-////                        val order = subject?.order
-////
-////                        SubjectCardView(
-////                            imageUrl = HTTPS_IMAGE_BASE_URL + photoUrl,
-////                            name = name,
-////                            studSubjName = subject?.studentSubject?.subjectName,
-////                            onClickable = {
-////                                 navController.navigate("VideoListScreen/${subjectId}/${name}")
-////                            },
-////                            onDelete = {
-//////                                viewModel.deleteSubject(id = subjectId.toInt())
-//////                                // Trigger recomposition by updating the state
-//////                                viewModel.updateSubjectListAfterDelete(subjectId.toInt())
-////                            }
-////                        )
-////
-////                        // insert the data in local server if any change the remote server
-////                        LaunchedEffect(key1 = subjectId, block = {
-////                            val listOfSubjects = listOf(
-////                                SubjectEntity(
-////                                    subjectId = subjectId,
-////                                    yearlyPrice = yearlyPrice,
-////                                    studentSubject = studentSubject,
-////                                    validityStartDate = validityStartDate,
-////                                    level = level,
-////                                    packageId = packageId,
-////                                    packageTag = packageTag,
-////                                    monthlyPrice = monthlyPrice,
-////                                    validityEndDate = validityEndDate,
-////                                    halfYearlyPrice = halfYearlyPrice,
-////                                    assetType = assetType,
-////                                    photoUrl = photoUrl,
-////                                    isComingSoon = isComingSoon,
-////                                    name = name,
-////                                    planEndDate = planEndDate,
-////                                    packageGrade = packageGrade,
-////                                    isStudentPremium = isStudentPremium,
-////                                    order = order
-////                                )
-////                            )
-////                            viewModel.insertSubject(listOfSubjects)
-////                        })
-////                    }
-////                }
-////            }
-////        }
-////    }
-//}
-//
-//@Composable
-//fun SubjectCardView(
-//    imageUrl: String,
-//    name: String?,
-//    studSubjName: String?,
-//    onClickable: () -> Unit,
-//    onDelete: (Int) -> Unit
-//) {
-//    Card(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(bottom = 15.dp)
-//            .border(1.dp, Color.LightGray)
-//            .clickable { onClickable() },
-//        shape = ShapeDefaults.Medium
-//    ) {
-//        Row(
-//            modifier = Modifier
-//                .fillMaxSize()
-//                .background(Color.White),
-//            horizontalArrangement = Arrangement.Center,
-//            verticalAlignment = Alignment.CenterVertically
-//        ) {
-//            AsyncImageView(
-//                model = imageUrl,
-//                modifier = Modifier
-//                    .size(120.dp)
-//                    .padding(
-//                        start = 10.dp,
-//                        end = 10.dp
-//                    )
-//            )
-//            Column(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .border(1.dp, Color.LightGray),
-//                verticalArrangement = Arrangement.Bottom
-//            ) {
-//                Column(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .padding(15.dp)
-//                ) {
-//                    TextView(
-//                        text = name.toString(),
-//                        style = TextStyle(
-//                            fontSize = 16.sp,
-//                            color = Color.DarkGray,
-//                            fontWeight = FontWeight.Bold,
-//                        ),
-//                        modifier = Modifier
-//                    )
-//                    TextView(
-//                        text = studSubjName.toString(),
-//                        style = TextStyle(
-//                            fontSize = 14.sp,
-//                            fontWeight = FontWeight.Normal,
-//                            lineHeight = 20.sp,
-//                            color = Color.Gray
-//                        ),
-//                        modifier = Modifier.padding(top = 5.dp)
-//                    )
-//                }
-//                Spacer(modifier = Modifier.padding(top = 20.dp))
-//                Row(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .clickable {
-//                            onDelete
-//                        }
-//                        .border(1.dp, Color.LightGray)
-//                        .padding(10.dp),
-//                    verticalAlignment = Alignment.CenterVertically
-//                ) {
-//                    VectorIconView(
-//                        imageVector = Icons.Default.Newspaper,
-//                        contentDescription = null,
-//                        tint = skyBlue,
-//                        modifier = Modifier.padding(start = 5.dp)
-//                    )
-//                    TextView(
-//                        text = "View Package Detail", style = TextStyle(
-//                            fontSize = 14.sp,
-//                            fontWeight = FontWeight.SemiBold,
-//                            color = skyBlue
-//                        ),
-//                        modifier = Modifier.padding(start = 5.dp)
-//                    )
-//                }
-//            }
-//        }
-//    }
-//}

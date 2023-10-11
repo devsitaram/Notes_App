@@ -16,15 +16,23 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.record.notes.data.common.Constants.AMOUNT
+import com.record.notes.data.common.Constants.DATE
+import com.record.notes.data.common.Constants.ID
+import com.record.notes.data.common.Constants.NAME
+import com.record.notes.data.common.Constants.WORK
 import com.record.notes.presentation.ui.components.TextView
 import com.record.notes.presentation.ui.components.VectorIconView
 import com.record.notes.presentation.ui.screen.HomeViewScreen
 import com.record.notes.presentation.ui.screen.RecordViewScreen
 import com.record.notes.presentation.ui.screen.SearchViewScreen
+import com.record.notes.presentation.ui.screen.UpdateViewScreen
 import com.record.notes.ui.theme.pink
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -36,7 +44,7 @@ fun MainViewScreen() {
         BtnNavScreen.HomeScreen,
         BtnNavScreen.SearchScreen,
         BtnNavScreen.RecordScreen,
-        )
+    )
     Scaffold(
         bottomBar = {
             BottomNavigation {
@@ -97,11 +105,44 @@ fun ButtonNavigationViewScreen(
             HomeViewScreen(navController)
         }
         composable(BtnNavScreen.SearchScreen.route) {
-            SearchViewScreen(navController)
+            SearchViewScreen()
         }
         composable(BtnNavScreen.RecordScreen.route) {
             RecordViewScreen(navController)
-//            SubjectViewScreen(navController)
+        }
+        composable(
+            route = ScreenList.UpdateScreen.route,
+            arguments = listOf(
+                navArgument(name = ID) {
+                    type = NavType.StringType
+                },
+                navArgument(name = DATE) {
+                    type = NavType.StringType
+                },
+                navArgument(name = NAME) {
+                    type = NavType.StringType
+                },
+                navArgument(name = WORK) {
+                    type = NavType.StringType
+                },
+                navArgument(name = AMOUNT) {
+                    type = NavType.StringType
+                }
+            )
+        ) { navBackStackEntry ->
+            val customerId = navBackStackEntry.arguments?.getString(ID)?.toInt()
+            val date = navBackStackEntry.arguments?.getString(DATE).toString()
+            val name = navBackStackEntry.arguments?.getString(NAME).toString()
+            val work = navBackStackEntry.arguments?.getString(WORK).toString()
+            val amounts = navBackStackEntry.arguments?.getString(AMOUNT).toString()
+            UpdateViewScreen(
+                customerId = customerId,
+                date = date,
+                name = name,
+                worked = work,
+                amount = amounts,
+                navController = navController
+            )
         }
         // other screen
 //        composable(

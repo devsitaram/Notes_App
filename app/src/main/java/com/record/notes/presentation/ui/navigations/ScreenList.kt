@@ -6,14 +6,19 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.PersonOutline
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.record.notes.data.common.Constants.SUBJECT_ID
-import com.record.notes.data.common.Constants.SUBJECT_NAME_KEY
-import com.record.notes.data.common.Constants.VIDEO_ID_KEY
+import com.record.notes.data.common.Constants.ADDRESS
+import com.record.notes.data.common.Constants.AMOUNT
+import com.record.notes.data.common.Constants.DATE
+import com.record.notes.data.common.Constants.DESCRIPTION
+import com.record.notes.data.common.Constants.EMAIL
+import com.record.notes.data.common.Constants.ID
+import com.record.notes.data.common.Constants.NAME
+import com.record.notes.data.common.Constants.NICK_NAME
+import com.record.notes.data.common.Constants.PHONE_NUM
+import com.record.notes.data.common.Constants.WORK
 
 sealed class ScreenList(val route: String) {
-    object MainScreen: ScreenList("MainScreen")
-    object VideoListScreen : ScreenList("VideoListScreen/{$SUBJECT_ID}/{$SUBJECT_NAME_KEY}")
-    object VideoScreen : ScreenList("VideoPlayScreen/{$VIDEO_ID_KEY}")
+    object UpdateScreen: ScreenList("Update/{$ID}/{$DATE}/{$NAME}/{$WORK}/{$AMOUNT}")
 }
 
 sealed class BtnNavScreen(var icon: ImageVector, val route: String) {

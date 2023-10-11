@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.record.notes.data.common.Resource
+import com.record.notes.data.source.local.CustomerEntity
 import com.record.notes.domain.use_case.HomeUseCase
 import com.record.notes.presentation.state.CustomerState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -42,7 +43,3 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
         homeUseCase(customerId).launchIn(viewModelScope)
     }
 }
-//    fun insertUser(userEntity: UserEntity) {
-//        userProfileUseCase(userEntity).launchIn(viewModelScope)
-//    }
-//}

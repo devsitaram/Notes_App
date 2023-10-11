@@ -4,8 +4,15 @@ object Constants {
 
     const val DATABASE_NAME = "Room_Database"
 
-    const val SUBJECT_ID = "subject_id"
-    const val SUBJECT_NAME_KEY = "subject_name"
-    const val VIDEO_ID_KEY = "video_id"
+    const val ID = "id"
+    const val DATE = "date"
+    const val NAME = "name"
+    const val WORK = "work"
+    const val AMOUNT = "amount"
+    const val DESCRIPTION = "description"
+    const val PHONE_NUM = "phoneNum"
+    const val NICK_NAME = "nickName"
+    const val ADDRESS = "address"
+    const val EMAIL = "email"
 
 }
