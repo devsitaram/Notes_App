@@ -82,99 +82,74 @@ fun HomeViewScreen(navController: NavHostController, viewModel: HomeViewModel = 
         }
     }
 
-
-//    Box(modifier = Modifier.fillMaxSize()) {
-//        Column(
-//            modifier = Modifier
-//                .fillMaxSize()
-//                .padding(bottom = 50.dp),
-//            verticalArrangement = Arrangement.Top,
-//            horizontalAlignment = Alignment.CenterHorizontally
-//        ) {
-//            ButtonAppBar(title = "Home Page")
-//            if (customerList.isData == null) {
-//                Column(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .fillMaxHeight(),
-//                    verticalArrangement = Arrangement.Center,
-//                    horizontalAlignment = Alignment.CenterHorizontally
-//                ) {
-//                    TextView(text = "Not Result...")
-//                }
-//            } else {
-//
-//            }
-//        }
-//    }
-
-//    customerList.isData?.let {
-    Box(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(bottom = 50.dp),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            ButtonAppBar(title = "Home Page")
-            if (customerList.isData.isNullOrEmpty()) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    TextView(text = "No Result...")
-                }
-            }
-            customerList.isData?.let {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    LazyColumn(
+    customerList.isData?.let {
+        Box(modifier = Modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = 50.dp),
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                ButtonAppBar(title = "Home Page")
+                if (customerList.isData.isNullOrEmpty()) {
+                    Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(10.dp)
+                            .fillMaxHeight(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        this.items(it) { customer ->
-                            val customerId = customer?.customerId
-                            val dateAndTime = customer?.dateAndTime
-                            val fullName = customer?.fullName
-                            val work = customer?.work
-                            val amount = customer?.amounts
-                            val status = customer?.status
-                            val descriptions = customer?.descriptions ?: "null"
-                            val phoneNumber = customer?.phoneNumber ?: "null"
-                            val nickname = customer?.nickname ?: "null"
-                            val location = customer?.location ?: "null"
-                            val emailAddress = customer?.emailAddress ?: "null"
-                            CustomerListBox(
-                                customerId = customerId,
-                                dateAndTime = dateAndTime,
-                                fullName = fullName,
-                                work = work,
-                                status = status,
-                                nickname = nickname,
-                                onAdd = {
-                                    Toast.makeText(context, "Add success!", Toast.LENGTH_SHORT).show()
-                                },
-                                onUpdate = {
-                                    navController.navigate("Update/${customerId}/${dateAndTime}/${fullName}/${work}/${amount}")
-                                },
-                                showDialogBox = showDialogBox,
-                                onDeleteDialogBox = { showDialogBox = true },
-                                onDismissDialogBox = { showDialogBox = false },
-                                onDelete = {
-                                    viewModel.deleteCustomer(customerId)
-                                    showDialogBox = false
-                                    isDelete = !isDelete
-                                }
-                            )
+                        TextView(text = "No Result...")
+                    }
+                } else {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight(),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        LazyColumn(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(10.dp)
+                        ) {
+                            this.items(it) { customer ->
+                                val customerId = customer?.customerId
+                                val dateAndTime = customer?.dateAndTime
+                                val fullName = customer?.fullName
+                                val work = customer?.work
+                                val amount = customer?.amounts
+                                val status = customer?.status
+                                val descriptions = customer?.descriptions ?: "null"
+                                val phoneNumber = customer?.phoneNumber ?: "null"
+                                val nickname = customer?.nickname ?: "null"
+                                val location = customer?.location ?: "null"
+                                val emailAddress = customer?.emailAddress ?: "null"
+                                CustomerListBox(
+                                    customerId = customerId,
+                                    dateAndTime = dateAndTime,
+                                    fullName = fullName,
+                                    work = work,
+                                    status = status,
+                                    nickname = nickname,
+                                    onAdd = {
+                                        Toast.makeText(context, "Add success!", Toast.LENGTH_SHORT)
+                                            .show()
+                                    },
+                                    onUpdate = {
+                                        navController.navigate("Update/${customerId}/${dateAndTime}/${fullName}/${work}/${amount}")
+                                    },
+                                    showDialogBox = showDialogBox,
+                                    onDeleteDialogBox = { showDialogBox = true },
+                                    onDismissDialogBox = { showDialogBox = false },
+                                    onDelete = {
+                                        viewModel.deleteCustomer(customerId)
+                                        showDialogBox = false
+                                        isDelete = !isDelete
+                                    }
+                                )
+                            }
                         }
                     }
                 }
@@ -191,7 +166,7 @@ fun CustomerListBox(
     work: String?,
     status: String?,
     nickname: String?,
-    onAdd : () -> Unit,
+    onAdd: () -> Unit,
     onUpdate: () -> Unit,
     showDialogBox: Boolean = false,
     onDeleteDialogBox: () -> Unit,
@@ -237,11 +212,12 @@ fun CustomerListBox(
                         onDismissDropdown = { expandedSetting = false },
                         onAdd = { onAdd() },
                         onUpdate = { onUpdate() },
-                        onDeleteDialogBox = {  onDeleteDialogBox() }
+                        onDeleteDialogBox = { onDeleteDialogBox() }
                     )
                 }
             }
-            Column(modifier = Modifier
+            Column(
+                modifier = Modifier
                     .wrapContentWidth()
                     .padding(start = 15.dp, bottom = 15.dp)
             ) {
@@ -325,7 +301,6 @@ fun SettingIconView(
 
                                     else -> {
                                         onDeleteDialogBox()
-
                                     }
                                 }
                                 onDismissDropdown()

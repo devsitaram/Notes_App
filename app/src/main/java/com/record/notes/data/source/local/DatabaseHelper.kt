@@ -4,7 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverter
+import androidx.room.TypeConverters
 import com.record.notes.data.common.Constants.DATABASE_NAME
+import com.record.notes.data.common.util.JsonTypeConverter
 
 /**
  * this is the Room Database which is abstract class
@@ -17,7 +20,8 @@ import com.record.notes.data.common.Constants.DATABASE_NAME
  *        5: adding json type converter @TypeConverters
  * implement RoomDatabase
  */
-@Database(entities = [CustomerEntity::class], version = 2, exportSchema = false)
+@Database(entities = [CustomerEntity::class], version = 3, exportSchema = false)
+@TypeConverters(JsonTypeConverter::class)
 abstract class DatabaseHelper : RoomDatabase() {
     abstract fun userDao(): RoomDao
 

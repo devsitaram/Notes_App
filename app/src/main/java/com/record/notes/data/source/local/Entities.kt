@@ -17,6 +17,8 @@ data class CustomerEntity(
     val work: String? = null,
     @ColumnInfo("amounts")
     val amounts: String? = null,
+    @ColumnInfo("newInfo")
+    val newInfo: List<NewInfo?>? = null,
     @ColumnInfo("status") // line ki dine
     val status: String? = null,
     @ColumnInfo("descriptions")
@@ -29,4 +31,10 @@ data class CustomerEntity(
     val location: String? = null,
     @ColumnInfo("emailAddress")
     val emailAddress: String? = null
+)
+
+data class NewInfo(
+    val newDate: String? = null,
+    val work: String? = null,
+    val amounts: String? = null,
 )

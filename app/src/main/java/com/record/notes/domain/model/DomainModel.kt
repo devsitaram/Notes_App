@@ -1,11 +1,5 @@
 package com.record.notes.domain.model
 
-import android.os.Parcelable
-import androidx.compose.runtime.MutableState
-import androidx.room.ColumnInfo
-import kotlinx.android.parcel.Parcelize
-import retrofit2.http.Query
-
 data class CustomerPojo(
     val customerId: Int? = null,
     val dateAndTime: String? = null,

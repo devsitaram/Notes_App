@@ -62,6 +62,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.record.notes.R
 import com.record.notes.data.source.local.CustomerEntity
+import com.record.notes.data.source.local.NewInfo
 import com.record.notes.presentation.ui.components.ButtonView
 import com.record.notes.presentation.ui.components.DateTimePickerView
 import com.record.notes.presentation.ui.components.InputTextFieldView
@@ -154,6 +155,7 @@ fun UpdateViewScreen(
                     fullName = fullName,
                     work = work,
                     amounts = amounts,
+                    newInfo = listOf(NewInfo(newDate = null, work = null, amounts = null)),
                     status = selectedStatusItem,
                     descriptions = descriptions,
                     phoneNumber = phoneNumber,

@@ -61,6 +61,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.record.notes.R
 import com.record.notes.data.source.local.CustomerEntity
+import com.record.notes.data.source.local.NewInfo
 import com.record.notes.presentation.ui.components.ButtonView
 import com.record.notes.presentation.ui.components.DateTimePickerView
 import com.record.notes.presentation.ui.components.InputTextFieldView
@@ -151,6 +152,7 @@ fun RecordViewScreen(
                     dateAndTime = dateAndTime,
                     fullName = fullName,
                     work = work,
+                    newInfo = listOf(NewInfo(newDate = "23-01-2023", work = "Jogi", amounts = "10,000")),
                     amounts = amounts,
                     status = selectedStatusItem,
                     descriptions = descriptions,

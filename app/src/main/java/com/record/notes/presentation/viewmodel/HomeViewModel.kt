@@ -10,8 +10,12 @@ import com.record.notes.data.source.local.CustomerEntity
 import com.record.notes.domain.use_case.HomeUseCase
 import com.record.notes.presentation.state.CustomerState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -40,6 +44,8 @@ class HomeViewModel @Inject constructor(private val homeUseCase: HomeUseCase) : 
     }
 
     fun deleteCustomer(customerId: Int?){
-        homeUseCase(customerId).launchIn(viewModelScope)
+        CoroutineScope(Dispatchers.IO).async {
+            homeUseCase(customerId).launchIn(viewModelScope)
+        }
     }
 }
